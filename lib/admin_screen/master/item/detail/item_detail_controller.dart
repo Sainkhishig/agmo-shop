@@ -1,3 +1,6 @@
+import 'package:agmo_shop/admin_screen/common/hive_db/object/brand/brand.dart';
+import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.dart';
+import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
 import 'package:agmo_shop/admin_screen/master/item/list/item_state.dart';
 import 'package:agmo_shop/admin_screen/master/item/model/item_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -41,6 +44,39 @@ class ItemDetailController extends StateNotifier<ItemState> {
   //   var _todoQuery = _database.child("/counter");
   //   _todoQuery.set(count++);
   // }
+
+  Future<void> setMaster() async {
+    await getCategoryMaster();
+    await getBrandMaster();
+  }
+
+  Future<void> getCategoryMaster() async {
+    var masterDB = ref.read(masterBoxProvider);
+    await masterDB.box.clear();
+    var lstData = [];
+    var masterCategoryDB = await _database.child('category').orderByKey().get();
+    final categoryDB = Map<String, dynamic>.from(masterCategoryDB.value);
+    categoryDB.forEach((keyUser, value) {
+      print("value;;;$value");
+      final category = Category.fromRTDB(Map<String, dynamic>.from(value));
+      lstData.add(category);
+    });
+    await masterDB.box.put("Category", lstData);
+  }
+
+  Future<void> getBrandMaster() async {
+    var masterDB = ref.read(masterBoxProvider);
+    await masterDB.box.clear();
+    var lstData = [];
+    var masterBrandDB = await _database.child('brand').orderByKey().get();
+    final categoryDB = Map<String, dynamic>.from(masterBrandDB.value);
+    categoryDB.forEach((keyUser, value) {
+      print("value;;;$value");
+      final brand = Brand.fromRTDB(Map<String, dynamic>.from(value));
+      lstData.add(brand);
+    });
+    await masterDB.box.put("Brand", lstData);
+  }
 
   void create(ItemModel detail) {
     // var _todoQuery = _database.child("/item");

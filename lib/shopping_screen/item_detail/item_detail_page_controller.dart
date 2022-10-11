@@ -1,4 +1,4 @@
-import 'package:agmo_shop/screen/item_detail/item_detail_model.dart';
+import 'package:agmo_shop/shopping_screen/item_detail/item_detail_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -7,9 +7,6 @@ import 'package:agmo_shop/admin_screen/master/item/detail/item_detail.dart';
 import 'package:agmo_shop/admin_screen/master/item/list/item_list.dart';
 import 'package:agmo_shop/admin_screen/master/size/detail/size_detail.dart';
 import 'package:agmo_shop/admin_screen/master/size/list/size_list.dart';
-import 'package:agmo_shop/screen/favourite/favourite_page.dart';
-import 'package:agmo_shop/screen/home/home_page.dart';
-import 'package:agmo_shop/screen/item_detail/item_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

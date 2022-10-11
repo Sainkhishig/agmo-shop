@@ -1,8 +1,8 @@
 import 'package:adaptive_navigation/adaptive_navigation.dart';
-import 'package:agmo_shop/screen/cart/cart_page.dart';
-import 'package:agmo_shop/screen/favourite/favourite_page.dart';
-import 'package:agmo_shop/screen/home/home_page.dart';
-import 'package:agmo_shop/screen/item_detail/item_detail_page.dart';
+import 'package:agmo_shop/shopping_screen/cart/cart_page.dart';
+import 'package:agmo_shop/shopping_screen/favourite/favourite_page.dart';
+import 'package:agmo_shop/shopping_screen/home/home_page.dart';
+import 'package:agmo_shop/shopping_screen/item_detail/item_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

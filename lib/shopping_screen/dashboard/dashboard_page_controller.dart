@@ -1,4 +1,4 @@
-import 'package:agmo_shop/screen/dashboard/dashboard_page_model.dart';
+import 'package:agmo_shop/shopping_screen/dashboard/dashboard_page_model.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

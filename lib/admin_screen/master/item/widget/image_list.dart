@@ -1,3 +1,4 @@
+import 'package:agmo_shop/admin_screen/common/widget/afen_text_field.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_reorderable_list/flutter_reorderable_list.dart' as lib;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -73,7 +74,15 @@ class ImageAddList extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(flex: 5, child: rowItem.widget),
+                  Expanded(
+                    flex: 5,
+                    child: Row(
+                      children: [
+                        rowItem.fieldImageName,
+                        rowItem.fieldImageLink
+                      ],
+                    ),
+                  ),
                   Visibility(
                     visible: lstDragItems.length != 1 && isRemovable,
                     child: IconButton(
@@ -130,13 +139,15 @@ class ImageAddList extends HookConsumerWidget {
 }
 
 class ImageItem {
-  ImageItem(this.widget, this.key);
+  ImageItem(this.fieldImageName, this.fieldImageLink, this.key);
 
-  final Widget widget;
+  final AfenTextField fieldImageName;
+  final AfenTextField fieldImageLink;
 
   // Each item in reorderable list needs stable and unique key
   final Key key;
 
   ImageItem.clone(ImageItem randomObject)
-      : this(randomObject.widget, randomObject.key);
+      : this(randomObject.fieldImageName, randomObject.fieldImageLink,
+            randomObject.key);
 }

@@ -1,19 +1,28 @@
 import 'package:agmo_shop/admin_screen/common/admin_common_page.dart';
+import 'package:agmo_shop/admin_screen/common/hive_db/object/brand/brand.dart';
+import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.dart';
+import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
+import 'package:agmo_shop/shopping_screen/common/common_page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:agmo_shop/provider/common_providers/shared_preferences_provider.dart';
-import 'package:agmo_shop/screen/common/common_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-
+  await Hive.initFlutter();
+  Hive.registerAdapter(CategoryAdapter());
+  Hive.registerAdapter(BrandAdapter());
   setPathUrlStrategy();
 
   // runApp(const ProviderScope(child: MyApp()));
   runApp(ProviderScope(overrides: [
+    masterBoxProvider
+        .overrideWithValue(ItemMasterBox(await Hive.openBox('ItemMaster'))),
     sharedPreferencesProvider.overrideWithValue(
       await SharedPreferences.getInstance(),
     ),

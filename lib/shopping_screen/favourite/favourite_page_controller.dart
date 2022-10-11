@@ -1,5 +1,5 @@
-import 'package:agmo_shop/screen/cart/cart_page_model.dart';
-import 'package:agmo_shop/screen/favourite/favourite_page_model.dart';
+import 'package:agmo_shop/shopping_screen/cart/cart_page_model.dart';
+import 'package:agmo_shop/shopping_screen/favourite/favourite_page_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final cartPageProvider =

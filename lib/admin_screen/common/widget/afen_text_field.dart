@@ -17,8 +17,9 @@ class AfenTextField extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return StatefulBuilder(builder: (context, setState) {
       return Container(
+          // decoration:
+          //     BoxDecoration(border: Border.all(color: Colors.blueAccent)),
           width: 400,
-          padding: EdgeInsets.all(8),
           // height: 50,
           child: Column(
             children: [
@@ -30,11 +31,13 @@ class AfenTextField extends HookConsumerWidget {
                       controller: controller,
                       autofocus: true,
                       // textInputAction: TextInputAction.search,
-
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
                         isDense: true,
                         labelText: lablel,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(width: 1), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.clear),
                           onPressed: () {
