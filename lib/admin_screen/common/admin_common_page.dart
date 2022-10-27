@@ -128,7 +128,13 @@ late final lstMenu = <Menu>[
     ItemList(),
     ItemDetail(),
   ),
-  Menu("Ангилал", "category", Icons.category, CategoryList(), CategoryDetail()),
+  Menu(
+    "Ангилал",
+    "category",
+    Icons.category,
+    CategoryList(),
+    CategoryDetail(),
+  ),
   Menu(
     "Брэнд",
     "brand",

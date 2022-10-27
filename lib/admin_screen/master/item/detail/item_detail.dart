@@ -2,6 +2,7 @@ import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.d
 import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
 import 'package:agmo_shop/admin_screen/common/widget/afen_text_field.dart';
 import 'package:agmo_shop/admin_screen/common/widget/common_check_box_list.dart';
+import 'package:agmo_shop/admin_screen/common/widget/common_dropdown.dart';
 import 'package:agmo_shop/admin_screen/common/widget/save_button.dart';
 import 'package:agmo_shop/admin_screen/master/item/detail/item_detail_controller.dart';
 import 'package:agmo_shop/admin_screen/master/item/model/image_model.dart';
@@ -22,8 +23,8 @@ class ItemDetail extends HookConsumerWidget {
   List<Category> categoryMaster = [];
   AfenTextField txtCode = AfenTextField("код");
   AfenTextField txtName = AfenTextField("нэр");
-  AfenDropDown dropDownCategory = AfenDropDown("Ангилал");
-  AfenDropDown dropDownBrand = AfenDropDown("Үйлдвэрлэгч");
+  // AfenDropDown dropDownCategory = AfenDropDown("Ангилал");
+  // AfenDropDown dropDownBrand = AfenDropDown("Үйлдвэрлэгч");
   AfenTextField txtImageLink = AfenTextField("зураг");
   ImageAddList imageController = ImageAddList(
       onClickAdd: () {
@@ -46,13 +47,25 @@ class ItemDetail extends HookConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
     var itemMaster = ref.read(masterBoxProvider);
-    dropDownCategory.dataSource = itemMaster.categoryMaster
-        .map((e) => DropDownModel(e.code, e.name))
-        .toList();
-    dropDownBrand.dataSource = itemMaster.brandMaster
-        .map((e) => DropDownModel(e.code, e.name))
-        .toList();
+    // dropDownBrand.dataSource = itemMaster.brandMaster
+    //     .map((e) => DropDownModel(e.code, e.name))
+    //     .toList();
 
+    // dropDownCategory.dataSource = itemMaster.categoryMaster
+    //     .map((e) => DropDownModel(e.code, e.name))
+    //     .toList();
+    var dropdownSource = itemMaster.categoryMaster
+        .map(
+          (e) => DropdownMenuItem<CommonDropDownModel>(
+            alignment: AlignmentDirectional.center,
+            value: CommonDropDownModel(e.code, e.name),
+            child: Text(
+              e.name,
+              textAlign: TextAlign.right,
+            ),
+          ),
+        )
+        .toList();
     return Scaffold(
         body: Padding(
       padding: EdgeInsets.all(20),
@@ -63,7 +76,11 @@ class ItemDetail extends HookConsumerWidget {
             txtCode,
             txtName,
             txtImageLink,
-            dropDownCategory,
+            // dropDownCategory,
+            CommonDropdown(
+              dropdownSource,
+              onSelectionChanged: (selectedValue) {},
+            ),
             imageController,
             SaveButton(
               onSave: () {

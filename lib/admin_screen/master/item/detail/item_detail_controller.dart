@@ -46,32 +46,30 @@ class ItemDetailController extends StateNotifier<ItemState> {
   // }
 
   Future<void> setMaster() async {
-    await getCategoryMaster();
-    await getBrandMaster();
-  }
-
-  Future<void> getCategoryMaster() async {
     var masterDB = ref.read(masterBoxProvider);
     await masterDB.box.clear();
-    var lstData = [];
+    await getCategoryMaster(masterDB);
+    await getBrandMaster(masterDB);
+  }
+
+  Future<void> getCategoryMaster(ItemMasterBox masterDB) async {
+    List<Category> lstData = [];
     var masterCategoryDB = await _database.child('category').orderByKey().get();
     final categoryDB = Map<String, dynamic>.from(masterCategoryDB.value);
     categoryDB.forEach((keyUser, value) {
-      print("value;;;$value");
       final category = Category.fromRTDB(Map<String, dynamic>.from(value));
       lstData.add(category);
     });
     await masterDB.box.put("Category", lstData);
   }
 
-  Future<void> getBrandMaster() async {
-    var masterDB = ref.read(masterBoxProvider);
-    await masterDB.box.clear();
-    var lstData = [];
+  Future<void> getBrandMaster(ItemMasterBox masterDB) async {
+    List<Brand> lstData = [];
     var masterBrandDB = await _database.child('brand').orderByKey().get();
+
     final categoryDB = Map<String, dynamic>.from(masterBrandDB.value);
     categoryDB.forEach((keyUser, value) {
-      print("value;;;$value");
+      print("brand;;;$value");
       final brand = Brand.fromRTDB(Map<String, dynamic>.from(value));
       lstData.add(brand);
     });

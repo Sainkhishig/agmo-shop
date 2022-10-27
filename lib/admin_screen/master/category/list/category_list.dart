@@ -22,7 +22,8 @@ class CategoryList extends HookConsumerWidget {
             builder: (context, snapshot) {
               final tilesList = <Widget>[];
 
-              if (snapshot.hasData) {
+              if (snapshot.hasData &&
+                  (snapshot.data! as Event).snapshot.value != null) {
                 // final datas = (snapshot.data! as Event).snapshot;
                 // print("myUserKeydatas:$datas");
                 final myUsers = Map<String, dynamic>.from(
