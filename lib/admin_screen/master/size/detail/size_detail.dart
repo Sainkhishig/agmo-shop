@@ -5,8 +5,6 @@ import 'package:agmo_shop/admin_screen/master/size/model/size_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'size_detail_controller.dart';
-
 // pyfm061 : キャンセル規定編集
 class SizeDetail extends HookConsumerWidget {
   SizeDetail({Key? key}) : super(key: key);

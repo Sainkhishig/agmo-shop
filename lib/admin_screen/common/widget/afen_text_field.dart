@@ -6,20 +6,23 @@ class AfenTextField extends HookConsumerWidget {
     this.lablel, {
     Key? key,
     this.onValueChanged,
+    this.width = 400,
   }) : super(key: key);
 
   /// 検索機能
   final VoidCallback? onValueChanged;
   final String lablel;
+  final double width;
 
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return StatefulBuilder(builder: (context, setState) {
       return Container(
+          padding: EdgeInsets.all(10),
           // decoration:
           //     BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-          width: 400,
+          width: width,
           // height: 50,
           child: Column(
             children: [

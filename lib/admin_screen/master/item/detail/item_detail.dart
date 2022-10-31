@@ -29,10 +29,28 @@ class ItemDetail extends HookConsumerWidget {
   ImageAddList imageController = ImageAddList(
       onClickAdd: () {
         return ImageItem(
-            AfenTextField("Нэр"), AfenTextField("Холбоос"), Key("1"));
+          AfenTextField(
+            "Нэр",
+            width: 250,
+          ),
+          AfenTextField(
+            "Холбоос",
+            width: 300,
+          ),
+          const Key("1"),
+        );
       },
       lstDragItems: [
-        ImageItem(AfenTextField("Нэр"), AfenTextField("Холбоос"), Key("2"))
+        ImageItem(
+            AfenTextField(
+              "Нэр",
+              width: 250,
+            ),
+            AfenTextField(
+              "Холбоос",
+              width: 350,
+            ),
+            const Key("2"))
       ]);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,7 +72,19 @@ class ItemDetail extends HookConsumerWidget {
     // dropDownCategory.dataSource = itemMaster.categoryMaster
     //     .map((e) => DropDownModel(e.code, e.name))
     //     .toList();
-    var dropdownSource = itemMaster.categoryMaster
+    var dropdownSourceCategory = itemMaster.categoryMaster
+        .map(
+          (e) => DropdownMenuItem<CommonDropDownModel>(
+            alignment: AlignmentDirectional.center,
+            value: CommonDropDownModel(e.code, e.name),
+            child: Text(
+              e.name,
+              textAlign: TextAlign.right,
+            ),
+          ),
+        )
+        .toList();
+    var dropdownSourceBrand = itemMaster.brandMaster
         .map(
           (e) => DropdownMenuItem<CommonDropDownModel>(
             alignment: AlignmentDirectional.center,
@@ -68,7 +98,7 @@ class ItemDetail extends HookConsumerWidget {
         .toList();
     return Scaffold(
         body: Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,11 +107,76 @@ class ItemDetail extends HookConsumerWidget {
             txtName,
             txtImageLink,
             // dropDownCategory,
-            CommonDropdown(
-              dropdownSource,
-              onSelectionChanged: (selectedValue) {},
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Ангилал:",
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: SizedBox(
+                    width: 450,
+                    child: CommonDropdown(
+                      dropdownSourceCategory,
+                      onSelectionChanged: (selectedValue) {},
+                    ),
+                  ),
+                ),
+              ],
             ),
-            imageController,
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Брэнд:",
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: SizedBox(
+                    width: 450,
+                    child: CommonDropdown(
+                      dropdownSourceBrand,
+                      onSelectionChanged: (selectedValue) {},
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Зураг:",
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Expanded(
+                    flex: 6,
+                    child: Column(
+                      children: [
+                        imageController,
+                      ],
+                    )),
+              ],
+            ),
+
             SaveButton(
               onSave: () {
                 save(controller);

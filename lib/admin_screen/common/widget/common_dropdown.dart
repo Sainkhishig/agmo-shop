@@ -8,7 +8,7 @@ class CommonDropdown extends HookConsumerWidget {
       {Key? key,
       required this.onSelectionChanged,
       this.pickerName = "",
-      this.hintText = "選択してください"})
+      this.hintText = "сонгох"})
       : super(key: key);
 
   /// 検索機能
@@ -25,38 +25,24 @@ class CommonDropdown extends HookConsumerWidget {
     var hasSelectedValue = selectedValue == null
         ? true
         : dataSource.any((element) => element.value == selectedValue);
-    return StatefulBuilder(builder: (context, setState) {
-      return Stack(
-        children: [
-          // Text("$title"),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButtonFormField(
-                dropdownColor: Colors.white,
-                hint: Text(hintText),
-                isDense: true,
-                items: dataSource,
-                value: hasSelectedValue ? selectedValue : null,
-                onChanged: (value) {
-                  setState(() {
-                    selectedValue = value;
-                    onSelectionChanged!.call(value);
-                  });
-                },
-              ),
-            ),
-          ),
-          Positioned(
-              left: 10,
-              top: 10,
-              child: Container(
-                color: Colors.white,
-                child: AfenTextField(pickerName),
-              )),
-        ],
-      );
-    });
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButtonFormField(
+          dropdownColor: Colors.white,
+          hint: Text(hintText),
+          isDense: true,
+          items: dataSource,
+          value: hasSelectedValue ? selectedValue : null,
+          onChanged: (value) {
+            // setState(() {
+            //   selectedValue = value;
+            //   onSelectionChanged!.call(value);
+            // });
+          },
+        ),
+      ),
+    );
   }
 }
 
