@@ -2,6 +2,7 @@ import 'package:agmo_shop/admin_screen/common/admin_common_page.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/object/brand/brand.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
+import 'package:agmo_shop/admin_screen/master/size/model/measure.dart';
 import 'package:agmo_shop/shopping_screen/common/common_page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(CategoryAdapter());
   Hive.registerAdapter(BrandAdapter());
+  Hive.registerAdapter(MeasureAdapter());
   setPathUrlStrategy();
 
   // runApp(const ProviderScope(child: MyApp()));

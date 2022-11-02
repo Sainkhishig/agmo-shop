@@ -1,13 +1,15 @@
 import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
 import 'package:agmo_shop/admin_screen/common/widget/afen_text_field.dart';
-import 'package:agmo_shop/admin_screen/common/widget/common_check_box_list.dart';
+
 import 'package:agmo_shop/admin_screen/common/widget/common_dropdown.dart';
+import 'package:agmo_shop/admin_screen/common/widget/multi_check_filter_chip.dart';
 import 'package:agmo_shop/admin_screen/common/widget/save_button.dart';
 import 'package:agmo_shop/admin_screen/master/item/detail/item_detail_controller.dart';
 import 'package:agmo_shop/admin_screen/master/item/model/image_model.dart';
 import 'package:agmo_shop/admin_screen/master/item/model/item_model.dart';
 import 'package:agmo_shop/admin_screen/master/item/widget/image_list.dart';
+import 'package:agmo_shop/admin_screen/master/size/model/measure.dart';
 import 'package:agmo_shop/widget/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,10 +25,15 @@ class ItemDetail extends HookConsumerWidget {
   List<Category> categoryMaster = [];
   AfenTextField txtCode = AfenTextField("код");
   AfenTextField txtName = AfenTextField("нэр");
+  List<String> lstMeasure = [];
   // AfenDropDown dropDownCategory = AfenDropDown("Ангилал");
   // AfenDropDown dropDownBrand = AfenDropDown("Үйлдвэрлэгч");
   AfenTextField txtImageLink = AfenTextField("зураг");
-  ImageAddList imageController = ImageAddList(
+  final MultiCheckFilterChipController categorySelectionController =
+      MultiCheckFilterChipController(chipName: "Ангилал", chipIcon: Icons.web);
+  final MultiCheckFilterChipController measureSelectionController =
+      MultiCheckFilterChipController(chipName: "Хэмжээ", chipIcon: Icons.web);
+  ImageListWidget imageController = ImageListWidget(
       onClickAdd: () {
         return ImageItem(
           AfenTextField(
@@ -65,6 +72,9 @@ class ItemDetail extends HookConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
     var itemMaster = ref.read(masterBoxProvider);
+    categorySelectionController.dataSource =
+        getCategorySelectionData(itemMaster.categoryMaster);
+
     // dropDownBrand.dataSource = itemMaster.brandMaster
     //     .map((e) => DropDownModel(e.code, e.name))
     //     .toList();
@@ -72,7 +82,7 @@ class ItemDetail extends HookConsumerWidget {
     // dropDownCategory.dataSource = itemMaster.categoryMaster
     //     .map((e) => DropDownModel(e.code, e.name))
     //     .toList();
-    var dropdownSourceCategory = itemMaster.categoryMaster
+    var dropdownSourceMeasure = itemMaster.measureMaster
         .map(
           (e) => DropdownMenuItem<CommonDropDownModel>(
             alignment: AlignmentDirectional.center,
@@ -81,6 +91,7 @@ class ItemDetail extends HookConsumerWidget {
               e.name,
               textAlign: TextAlign.right,
             ),
+            onTap: () {},
           ),
         )
         .toList();
@@ -93,6 +104,9 @@ class ItemDetail extends HookConsumerWidget {
               e.name,
               textAlign: TextAlign.right,
             ),
+            onTap: () {
+              print("dropDown");
+            },
           ),
         )
         .toList();
@@ -106,30 +120,10 @@ class ItemDetail extends HookConsumerWidget {
             txtCode,
             txtName,
             txtImageLink,
+            categorySelectionController,
+
             // dropDownCategory,
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Expanded(
-                  flex: 1,
-                  child: Text(
-                    "Ангилал:",
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: SizedBox(
-                    width: 450,
-                    child: CommonDropdown(
-                      dropdownSourceCategory,
-                      onSelectionChanged: (selectedValue) {},
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
             Row(
               // mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -153,6 +147,57 @@ class ItemDetail extends HookConsumerWidget {
                 ),
               ],
             ),
+
+            StatefulBuilder(builder: (context, setState) {
+              measureSelectionController.dataSource = lstMeasure
+                  .asMap()
+                  .entries
+                  .map((e) => MultiCheckFilterModel("${e.key}", e.value))
+                  .toList();
+              return Column(
+                children: [
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Expanded(
+                        flex: 1,
+                        child: Text(
+                          "Хэмжээ:",
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: SizedBox(
+                          width: 450,
+                          child: CommonDropdown(
+                            dropdownSourceMeasure,
+                            onSelectionChanged: (selectedValue) {
+                              setState(
+                                () {
+                                  lstMeasure =
+                                      (selectedValue as Measure).lstMeasure;
+                                  measureSelectionController.dataSource =
+                                      lstMeasure
+                                          .asMap()
+                                          .entries
+                                          .map((e) => MultiCheckFilterModel(
+                                              "${e.key}", e.value))
+                                          .toList();
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  measureSelectionController
+                ],
+              );
+            }),
+
             const SizedBox(
               height: 20,
             ),
@@ -179,6 +224,7 @@ class ItemDetail extends HookConsumerWidget {
 
             SaveButton(
               onSave: () {
+                // categorySelection.selectedValues;
                 save(controller);
               },
             )
@@ -186,6 +232,10 @@ class ItemDetail extends HookConsumerWidget {
     ));
   }
 
+  List<MultiCheckFilterModel> getCategorySelectionData(List<Category> source) =>
+      [for (var e in source) MultiCheckFilterModel(e.code, e.name)];
+  List<MultiCheckFilterModel> getMeasureSelectionData(List<Measure> source) =>
+      [for (var e in source) MultiCheckFilterModel(e.code, e.name)];
   save(ItemDetailController controller) {
     var itemCode = txtCode.controller.text;
     var itemName = txtName.controller.text;

@@ -1,6 +1,7 @@
 import 'package:agmo_shop/admin_screen/common/hive_db/boxes/hive_box_class.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/object/brand/brand.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.dart';
+import 'package:agmo_shop/admin_screen/master/size/model/measure.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -37,5 +38,6 @@ class ItemMasterBox extends HiveBoxClass {
   // dynamic get lstN5Vocabulary => box.get("n5");
   List<Category> get categoryMaster => box.get("Category");
   List<Brand> get brandMaster => box.get("Brand");
+  List<Measure> get measureMaster => box.get("Measure");
   // set adminListColumnCount(int cnt) => box.put("adminListColumnCount", cnt);
 }

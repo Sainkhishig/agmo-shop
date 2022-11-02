@@ -8,8 +8,8 @@ enum DraggingMode {
   android,
 }
 
-class ImageAddList extends HookConsumerWidget {
-  ImageAddList({
+class ImageListWidget extends HookConsumerWidget {
+  ImageListWidget({
     Key? key,
     required this.onClickAdd,
     required this.lstDragItems,

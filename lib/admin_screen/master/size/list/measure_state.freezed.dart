@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'size_state.dart';
+part of 'measure_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,54 +13,56 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SizeState _$SizeStateFromJson(Map<String, dynamic> json) {
-  return _SizeState.fromJson(json);
+MeasureState _$MeasureStateFromJson(Map<String, dynamic> json) {
+  return _MeasureState.fromJson(json);
 }
 
 /// @nodoc
-class _$SizeStateTearOff {
-  const _$SizeStateTearOff();
+class _$MeasureStateTearOff {
+  const _$MeasureStateTearOff();
 
-  _SizeState call({List<dynamic> tags = const [], String? selectedId = null}) {
-    return _SizeState(
+  _MeasureState call(
+      {List<dynamic> tags = const [], String? selectedId = null}) {
+    return _MeasureState(
       tags: tags,
       selectedId: selectedId,
     );
   }
 
-  SizeState fromJson(Map<String, Object> json) {
-    return SizeState.fromJson(json);
+  MeasureState fromJson(Map<String, Object> json) {
+    return MeasureState.fromJson(json);
   }
 }
 
 /// @nodoc
-const $SizeState = _$SizeStateTearOff();
+const $MeasureState = _$MeasureStateTearOff();
 
 /// @nodoc
-mixin _$SizeState {
+mixin _$MeasureState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   String? get selectedId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SizeStateCopyWith<SizeState> get copyWith =>
+  $MeasureStateCopyWith<MeasureState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SizeStateCopyWith<$Res> {
-  factory $SizeStateCopyWith(SizeState value, $Res Function(SizeState) then) =
-      _$SizeStateCopyWithImpl<$Res>;
+abstract class $MeasureStateCopyWith<$Res> {
+  factory $MeasureStateCopyWith(
+          MeasureState value, $Res Function(MeasureState) then) =
+      _$MeasureStateCopyWithImpl<$Res>;
   $Res call({List<dynamic> tags, String? selectedId});
 }
 
 /// @nodoc
-class _$SizeStateCopyWithImpl<$Res> implements $SizeStateCopyWith<$Res> {
-  _$SizeStateCopyWithImpl(this._value, this._then);
+class _$MeasureStateCopyWithImpl<$Res> implements $MeasureStateCopyWith<$Res> {
+  _$MeasureStateCopyWithImpl(this._value, this._then);
 
-  final SizeState _value;
+  final MeasureState _value;
   // ignore: unused_field
-  final $Res Function(SizeState) _then;
+  final $Res Function(MeasureState) _then;
 
   @override
   $Res call({
@@ -81,29 +83,31 @@ class _$SizeStateCopyWithImpl<$Res> implements $SizeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SizeStateCopyWith<$Res> implements $SizeStateCopyWith<$Res> {
-  factory _$SizeStateCopyWith(
-          _SizeState value, $Res Function(_SizeState) then) =
-      __$SizeStateCopyWithImpl<$Res>;
+abstract class _$MeasureStateCopyWith<$Res>
+    implements $MeasureStateCopyWith<$Res> {
+  factory _$MeasureStateCopyWith(
+          _MeasureState value, $Res Function(_MeasureState) then) =
+      __$MeasureStateCopyWithImpl<$Res>;
   @override
   $Res call({List<dynamic> tags, String? selectedId});
 }
 
 /// @nodoc
-class __$SizeStateCopyWithImpl<$Res> extends _$SizeStateCopyWithImpl<$Res>
-    implements _$SizeStateCopyWith<$Res> {
-  __$SizeStateCopyWithImpl(_SizeState _value, $Res Function(_SizeState) _then)
-      : super(_value, (v) => _then(v as _SizeState));
+class __$MeasureStateCopyWithImpl<$Res> extends _$MeasureStateCopyWithImpl<$Res>
+    implements _$MeasureStateCopyWith<$Res> {
+  __$MeasureStateCopyWithImpl(
+      _MeasureState _value, $Res Function(_MeasureState) _then)
+      : super(_value, (v) => _then(v as _MeasureState));
 
   @override
-  _SizeState get _value => super._value as _SizeState;
+  _MeasureState get _value => super._value as _MeasureState;
 
   @override
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
   }) {
-    return _then(_SizeState(
+    return _then(_MeasureState(
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -118,11 +122,11 @@ class __$SizeStateCopyWithImpl<$Res> extends _$SizeStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SizeState implements _SizeState {
-  const _$_SizeState({this.tags = const [], this.selectedId = null});
+class _$_MeasureState implements _MeasureState {
+  const _$_MeasureState({this.tags = const [], this.selectedId = null});
 
-  factory _$_SizeState.fromJson(Map<String, dynamic> json) =>
-      _$$_SizeStateFromJson(json);
+  factory _$_MeasureState.fromJson(Map<String, dynamic> json) =>
+      _$$_MeasureStateFromJson(json);
 
   @JsonKey(defaultValue: const [])
   @override
@@ -133,13 +137,13 @@ class _$_SizeState implements _SizeState {
 
   @override
   String toString() {
-    return 'SizeState(tags: $tags, selectedId: $selectedId)';
+    return 'MeasureState(tags: $tags, selectedId: $selectedId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SizeState &&
+        (other is _MeasureState &&
             (identical(other.tags, tags) ||
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.selectedId, selectedId) ||
@@ -155,21 +159,21 @@ class _$_SizeState implements _SizeState {
 
   @JsonKey(ignore: true)
   @override
-  _$SizeStateCopyWith<_SizeState> get copyWith =>
-      __$SizeStateCopyWithImpl<_SizeState>(this, _$identity);
+  _$MeasureStateCopyWith<_MeasureState> get copyWith =>
+      __$MeasureStateCopyWithImpl<_MeasureState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SizeStateToJson(this);
+    return _$$_MeasureStateToJson(this);
   }
 }
 
-abstract class _SizeState implements SizeState {
-  const factory _SizeState({List<dynamic> tags, String? selectedId}) =
-      _$_SizeState;
+abstract class _MeasureState implements MeasureState {
+  const factory _MeasureState({List<dynamic> tags, String? selectedId}) =
+      _$_MeasureState;
 
-  factory _SizeState.fromJson(Map<String, dynamic> json) =
-      _$_SizeState.fromJson;
+  factory _MeasureState.fromJson(Map<String, dynamic> json) =
+      _$_MeasureState.fromJson;
 
   @override
   List<dynamic> get tags => throw _privateConstructorUsedError;
@@ -177,6 +181,6 @@ abstract class _SizeState implements SizeState {
   String? get selectedId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SizeStateCopyWith<_SizeState> get copyWith =>
+  _$MeasureStateCopyWith<_MeasureState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -5,8 +5,8 @@ import 'package:agmo_shop/admin_screen/master/category/detail/category_detail.da
 import 'package:agmo_shop/admin_screen/master/category/list/category_list.dart';
 import 'package:agmo_shop/admin_screen/master/item/detail/item_detail.dart';
 import 'package:agmo_shop/admin_screen/master/item/list/item_list.dart';
-import 'package:agmo_shop/admin_screen/master/size/detail/size_detail.dart';
-import 'package:agmo_shop/admin_screen/master/size/list/size_list.dart';
+import 'package:agmo_shop/admin_screen/master/size/detail/measure_detail.dart';
+import 'package:agmo_shop/admin_screen/master/size/list/measure_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -146,7 +146,7 @@ late final lstMenu = <Menu>[
     "Хэмжээ",
     "size",
     Icons.confirmation_number,
-    SizeList(),
-    SizeDetail(),
+    MeasureList(),
+    MeasureDetail(),
   ),
 ];

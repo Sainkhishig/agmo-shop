@@ -8,6 +8,7 @@ abstract class ItemState with _$ItemState {
   const factory ItemState({
     @Default([]) List tags,
     @Default(null) String? selectedId,
+    @Default([]) List<String> lstMeasure,
     // @Default(PlanType.lodging) PlanType planType,
     // @Default(DetailMode.none) DetailMode mode,
     // @Default(SearchStatus.none) SearchStatus searchStatus,

@@ -35,6 +35,7 @@ class CommonDropdown extends HookConsumerWidget {
           items: dataSource,
           value: hasSelectedValue ? selectedValue : null,
           onChanged: (value) {
+            onSelectionChanged!.call(value);
             // setState(() {
             //   selectedValue = value;
             //   onSelectionChanged!.call(value);

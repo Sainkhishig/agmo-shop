@@ -21,10 +21,14 @@ ItemState _$ItemStateFromJson(Map<String, dynamic> json) {
 class _$ItemStateTearOff {
   const _$ItemStateTearOff();
 
-  _ItemState call({List<dynamic> tags = const [], String? selectedId = null}) {
+  _ItemState call(
+      {List<dynamic> tags = const [],
+      String? selectedId = null,
+      List<String> lstMeasure = const []}) {
     return _ItemState(
       tags: tags,
       selectedId: selectedId,
+      lstMeasure: lstMeasure,
     );
   }
 
@@ -40,6 +44,7 @@ const $ItemState = _$ItemStateTearOff();
 mixin _$ItemState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   String? get selectedId => throw _privateConstructorUsedError;
+  List<String> get lstMeasure => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +56,7 @@ mixin _$ItemState {
 abstract class $ItemStateCopyWith<$Res> {
   factory $ItemStateCopyWith(ItemState value, $Res Function(ItemState) then) =
       _$ItemStateCopyWithImpl<$Res>;
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, List<String> lstMeasure});
 }
 
 /// @nodoc
@@ -66,6 +71,7 @@ class _$ItemStateCopyWithImpl<$Res> implements $ItemStateCopyWith<$Res> {
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? lstMeasure = freezed,
   }) {
     return _then(_value.copyWith(
       tags: tags == freezed
@@ -76,6 +82,10 @@ class _$ItemStateCopyWithImpl<$Res> implements $ItemStateCopyWith<$Res> {
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      lstMeasure: lstMeasure == freezed
+          ? _value.lstMeasure
+          : lstMeasure // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -86,7 +96,7 @@ abstract class _$ItemStateCopyWith<$Res> implements $ItemStateCopyWith<$Res> {
           _ItemState value, $Res Function(_ItemState) then) =
       __$ItemStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, List<String> lstMeasure});
 }
 
 /// @nodoc
@@ -102,6 +112,7 @@ class __$ItemStateCopyWithImpl<$Res> extends _$ItemStateCopyWithImpl<$Res>
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? lstMeasure = freezed,
   }) {
     return _then(_ItemState(
       tags: tags == freezed
@@ -112,6 +123,10 @@ class __$ItemStateCopyWithImpl<$Res> extends _$ItemStateCopyWithImpl<$Res>
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      lstMeasure: lstMeasure == freezed
+          ? _value.lstMeasure
+          : lstMeasure // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -119,7 +134,10 @@ class __$ItemStateCopyWithImpl<$Res> extends _$ItemStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ItemState implements _ItemState {
-  const _$_ItemState({this.tags = const [], this.selectedId = null});
+  const _$_ItemState(
+      {this.tags = const [],
+      this.selectedId = null,
+      this.lstMeasure = const []});
 
   factory _$_ItemState.fromJson(Map<String, dynamic> json) =>
       _$$_ItemStateFromJson(json);
@@ -130,10 +148,13 @@ class _$_ItemState implements _ItemState {
   @JsonKey(defaultValue: null)
   @override
   final String? selectedId;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<String> lstMeasure;
 
   @override
   String toString() {
-    return 'ItemState(tags: $tags, selectedId: $selectedId)';
+    return 'ItemState(tags: $tags, selectedId: $selectedId, lstMeasure: $lstMeasure)';
   }
 
   @override
@@ -144,14 +165,18 @@ class _$_ItemState implements _ItemState {
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.selectedId, selectedId) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedId, selectedId)));
+                    .equals(other.selectedId, selectedId)) &&
+            (identical(other.lstMeasure, lstMeasure) ||
+                const DeepCollectionEquality()
+                    .equals(other.lstMeasure, lstMeasure)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(selectedId);
+      const DeepCollectionEquality().hash(selectedId) ^
+      const DeepCollectionEquality().hash(lstMeasure);
 
   @JsonKey(ignore: true)
   @override
@@ -165,8 +190,10 @@ class _$_ItemState implements _ItemState {
 }
 
 abstract class _ItemState implements ItemState {
-  const factory _ItemState({List<dynamic> tags, String? selectedId}) =
-      _$_ItemState;
+  const factory _ItemState(
+      {List<dynamic> tags,
+      String? selectedId,
+      List<String> lstMeasure}) = _$_ItemState;
 
   factory _ItemState.fromJson(Map<String, dynamic> json) =
       _$_ItemState.fromJson;
@@ -175,6 +202,8 @@ abstract class _ItemState implements ItemState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   @override
   String? get selectedId => throw _privateConstructorUsedError;
+  @override
+  List<String> get lstMeasure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ItemStateCopyWith<_ItemState> get copyWith =>

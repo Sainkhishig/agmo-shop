@@ -39,7 +39,7 @@ class AfenTextField extends HookConsumerWidget {
                         labelText: lablel,
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(width: 1), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                          borderRadius: BorderRadius.circular(5.0),
                         ),
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.clear),

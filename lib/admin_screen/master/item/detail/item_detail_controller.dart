@@ -3,6 +3,7 @@ import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.d
 import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
 import 'package:agmo_shop/admin_screen/master/item/list/item_state.dart';
 import 'package:agmo_shop/admin_screen/master/item/model/item_model.dart';
+import 'package:agmo_shop/admin_screen/master/size/model/measure.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -50,6 +51,7 @@ class ItemDetailController extends StateNotifier<ItemState> {
     await masterDB.box.clear();
     await getCategoryMaster(masterDB);
     await getBrandMaster(masterDB);
+    await getMeasureMaster(masterDB);
   }
 
   Future<void> getCategoryMaster(ItemMasterBox masterDB) async {
@@ -61,6 +63,17 @@ class ItemDetailController extends StateNotifier<ItemState> {
       lstData.add(category);
     });
     await masterDB.box.put("Category", lstData);
+  }
+
+  Future<void> getMeasureMaster(ItemMasterBox masterDB) async {
+    List<Measure> lstData = [];
+    var masterMeasureDB = await _database.child('measure').orderByKey().get();
+    final measureDB = Map<String, dynamic>.from(masterMeasureDB.value);
+    measureDB.forEach((keyUser, value) {
+      final measure = Measure.fromRTDB(Map<String, dynamic>.from(value));
+      lstData.add(measure);
+    });
+    await masterDB.box.put("Measure", lstData);
   }
 
   Future<void> getBrandMaster(ItemMasterBox masterDB) async {
