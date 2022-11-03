@@ -71,6 +71,7 @@ class ItemDetailController extends StateNotifier<ItemState> {
     final measureDB = Map<String, dynamic>.from(masterMeasureDB.value);
     measureDB.forEach((keyUser, value) {
       final measure = Measure.fromRTDB(Map<String, dynamic>.from(value));
+      print("measure;;${measure.lstMeasure.length}");
       lstData.add(measure);
     });
     await masterDB.box.put("Measure", lstData);

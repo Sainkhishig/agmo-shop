@@ -1,8 +1,10 @@
 import 'package:agmo_shop/admin_screen/common/hive_db/object/category/category.dart';
 import 'package:agmo_shop/admin_screen/common/hive_db/provider/master_box_provider.dart';
+import 'package:agmo_shop/admin_screen/common/widget/afen_rich_text_field.dart';
 import 'package:agmo_shop/admin_screen/common/widget/afen_text_field.dart';
 
 import 'package:agmo_shop/admin_screen/common/widget/common_dropdown.dart';
+import 'package:agmo_shop/admin_screen/common/widget/measure_dropdown.dart';
 import 'package:agmo_shop/admin_screen/common/widget/multi_check_filter_chip.dart';
 import 'package:agmo_shop/admin_screen/common/widget/save_button.dart';
 import 'package:agmo_shop/admin_screen/master/item/detail/item_detail_controller.dart';
@@ -23,8 +25,15 @@ class ItemDetail extends HookConsumerWidget {
   final _database = FirebaseDatabase.instance.reference();
   ItemDetail({Key? key}) : super(key: key);
   List<Category> categoryMaster = [];
-  AfenTextField txtCode = AfenTextField("код");
-  AfenTextField txtName = AfenTextField("нэр");
+  AfenTextField txtCode = AfenTextField("Код");
+  AfenTextField txtName = AfenTextField("Нэр");
+  AfenTextField txtPrice = AfenTextField("Үндсэн үнэ");
+  AfenTextField txtSalePrice = AfenTextField("Зарах үнэ");
+  AfenTextField txtTransportationFee = AfenTextField("Тээврийн зардал");
+  AfenTextField txtWeight = AfenTextField("Жин");
+  AfenTextField txtDimension = AfenTextField("3 хэмжээс");
+  AfenRichTextField txtDescription = AfenRichTextField("Тайлбар");
+
   List<String> lstMeasure = [];
   // AfenDropDown dropDownCategory = AfenDropDown("Ангилал");
   // AfenDropDown dropDownBrand = AfenDropDown("Үйлдвэрлэгч");
@@ -113,15 +122,18 @@ class ItemDetail extends HookConsumerWidget {
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(20),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             txtCode,
             txtName,
+            txtPrice,
+            txtSalePrice,
+            txtTransportationFee,
             txtImageLink,
             categorySelectionController,
-
+            txtDescription,
             // dropDownCategory,
 
             Row(
@@ -148,55 +160,63 @@ class ItemDetail extends HookConsumerWidget {
               ],
             ),
 
-            StatefulBuilder(builder: (context, setState) {
-              measureSelectionController.dataSource = lstMeasure
-                  .asMap()
-                  .entries
-                  .map((e) => MultiCheckFilterModel("${e.key}", e.value))
-                  .toList();
-              return Column(
-                children: [
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Expanded(
-                        flex: 1,
-                        child: Text(
-                          "Хэмжээ:",
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 5,
-                        child: SizedBox(
-                          width: 450,
-                          child: CommonDropdown(
-                            dropdownSourceMeasure,
-                            onSelectionChanged: (selectedValue) {
-                              setState(
-                                () {
-                                  lstMeasure =
-                                      (selectedValue as Measure).lstMeasure;
-                                  measureSelectionController.dataSource =
-                                      lstMeasure
-                                          .asMap()
-                                          .entries
-                                          .map((e) => MultiCheckFilterModel(
-                                              "${e.key}", e.value))
-                                          .toList();
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  measureSelectionController
-                ],
-              );
-            }),
+            MeasureDropdown(
+              itemMaster.measureMaster,
+              onSelectionChanged: (selectedValue) {},
+            ),
+            // StatefulBuilder(builder: (context, setState) {
+            //   measureSelectionController.dataSource = lstMeasure
+            //       .asMap()
+            //       .entries
+            //       .map((e) => MultiCheckFilterModel("${e.key}", e.value))
+            //       .toList();
+            //   return Column(
+            //     children: [
+            //       Row(
+            //         // mainAxisAlignment: MainAxisAlignment.start,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: [
+            //           const Expanded(
+            //             flex: 1,
+            //             child: Text(
+            //               "Хэмжээ:",
+            //               textAlign: TextAlign.start,
+            //             ),
+            //           ),
+            //           Expanded(
+            //             flex: 5,
+            //             child: SizedBox(
+            //               width: 450,
+            //               child: CommonDropdown(
+            //                 dropdownSourceMeasure,
+            //                 onSelectionChanged: (selectedValue) {
+            //                   setState(
+            //                     () {
+            //                       var measureId =
+            //                           (selectedValue as CommonDropDownModel).id;
+            //                       lstMeasure = itemMaster.measureMaster
+            //                           .firstWhere((element) =>
+            //                               element.code == measureId)
+            //                           .lstMeasure;
+            //                       // measureSelectionController.dataSource =
+            //                       //     lstMeasure
+            //                       //         .asMap()
+            //                       //         .entries
+            //                       //         .map((e) => MultiCheckFilterModel(
+            //                       //             "${e.key}", e.value))
+            //                       //         .toList();
+            //                     },
+            //                   );
+            //                 },
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       measureSelectionController
+            //     ],
+            //   );
+            // }),
 
             const SizedBox(
               height: 20,

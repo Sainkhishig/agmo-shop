@@ -19,7 +19,7 @@ class MeasureAdapter extends TypeAdapter<Measure> {
     return Measure(
       fields[0] as String,
       fields[1] as String,
-      (fields[2] as List).cast<String>(),
+      fields[2] as dynamic,
       fields[3] as DateTime,
     );
   }

@@ -25,7 +25,7 @@ class Measure extends HiveObject {
   @HiveField(1)
   late String name;
   @HiveField(2)
-  late List<String> lstMeasure;
+  late dynamic lstMeasure;
   @HiveField(3)
   late DateTime writeDate;
   Measure(this.code, this.name, this.lstMeasure, this.writeDate);
@@ -35,7 +35,7 @@ class Measure extends HiveObject {
     return Measure(
         data['code'] ?? "",
         data['name'] ?? "",
-        data['lstMeasure'] ?? [],
+        data['values'],
         data['writeDate'] != null
             ? DateTime.fromMicrosecondsSinceEpoch(data['writeDate'])
             : DateTime.now());
