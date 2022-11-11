@@ -1,12 +1,16 @@
 import 'package:adaptive_navigation/adaptive_navigation.dart';
+import 'package:agmo_shop/admin_screen/master/brand/brand_page.dart';
 import 'package:agmo_shop/admin_screen/master/brand/detail/brand_detail.dart';
 import 'package:agmo_shop/admin_screen/master/brand/list/brand_list.dart';
+import 'package:agmo_shop/admin_screen/master/category/category_page.dart';
 import 'package:agmo_shop/admin_screen/master/category/detail/category_detail.dart';
 import 'package:agmo_shop/admin_screen/master/category/list/category_list.dart';
 import 'package:agmo_shop/admin_screen/master/item/detail/item_detail.dart';
+import 'package:agmo_shop/admin_screen/master/item/item_page.dart';
 import 'package:agmo_shop/admin_screen/master/item/list/item_list.dart';
 import 'package:agmo_shop/admin_screen/master/size/detail/measure_detail.dart';
 import 'package:agmo_shop/admin_screen/master/size/list/measure_list.dart';
+import 'package:agmo_shop/admin_screen/master/size/measure_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -125,28 +129,28 @@ late final lstMenu = <Menu>[
     "Бараа",
     "items",
     Icons.add_box,
-    ItemList(),
-    ItemDetail(),
+    ItemPage(),
+    ItemPage(),
   ),
   Menu(
     "Ангилал",
     "category",
     Icons.category,
-    CategoryList(),
-    CategoryDetail(),
+    CategoryPage(),
+    CategoryPage(),
   ),
   Menu(
     "Брэнд",
     "brand",
     Icons.branding_watermark,
-    BrandList(),
-    BrandDetail(),
+    BrandPage(),
+    BrandPage(),
   ),
   Menu(
     "Хэмжээ",
     "size",
     Icons.confirmation_number,
-    MeasureList(),
-    MeasureDetail(),
+    MeasurePage(),
+    MeasurePage(),
   ),
 ];

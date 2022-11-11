@@ -22,10 +22,13 @@ class _$MeasureStateTearOff {
   const _$MeasureStateTearOff();
 
   _MeasureState call(
-      {List<dynamic> tags = const [], String? selectedId = null}) {
+      {List<dynamic> tags = const [],
+      String? selectedId = null,
+      dynamic detailData = null}) {
     return _MeasureState(
       tags: tags,
       selectedId: selectedId,
+      detailData: detailData,
     );
   }
 
@@ -41,6 +44,7 @@ const $MeasureState = _$MeasureStateTearOff();
 mixin _$MeasureState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   String? get selectedId => throw _privateConstructorUsedError;
+  dynamic get detailData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +57,7 @@ abstract class $MeasureStateCopyWith<$Res> {
   factory $MeasureStateCopyWith(
           MeasureState value, $Res Function(MeasureState) then) =
       _$MeasureStateCopyWithImpl<$Res>;
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, dynamic detailData});
 }
 
 /// @nodoc
@@ -68,6 +72,7 @@ class _$MeasureStateCopyWithImpl<$Res> implements $MeasureStateCopyWith<$Res> {
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? detailData = freezed,
   }) {
     return _then(_value.copyWith(
       tags: tags == freezed
@@ -78,6 +83,10 @@ class _$MeasureStateCopyWithImpl<$Res> implements $MeasureStateCopyWith<$Res> {
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      detailData: detailData == freezed
+          ? _value.detailData
+          : detailData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -89,7 +98,7 @@ abstract class _$MeasureStateCopyWith<$Res>
           _MeasureState value, $Res Function(_MeasureState) then) =
       __$MeasureStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, dynamic detailData});
 }
 
 /// @nodoc
@@ -106,6 +115,7 @@ class __$MeasureStateCopyWithImpl<$Res> extends _$MeasureStateCopyWithImpl<$Res>
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? detailData = freezed,
   }) {
     return _then(_MeasureState(
       tags: tags == freezed
@@ -116,6 +126,10 @@ class __$MeasureStateCopyWithImpl<$Res> extends _$MeasureStateCopyWithImpl<$Res>
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      detailData: detailData == freezed
+          ? _value.detailData
+          : detailData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -123,7 +137,8 @@ class __$MeasureStateCopyWithImpl<$Res> extends _$MeasureStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MeasureState implements _MeasureState {
-  const _$_MeasureState({this.tags = const [], this.selectedId = null});
+  const _$_MeasureState(
+      {this.tags = const [], this.selectedId = null, this.detailData = null});
 
   factory _$_MeasureState.fromJson(Map<String, dynamic> json) =>
       _$$_MeasureStateFromJson(json);
@@ -134,10 +149,13 @@ class _$_MeasureState implements _MeasureState {
   @JsonKey(defaultValue: null)
   @override
   final String? selectedId;
+  @JsonKey(defaultValue: null)
+  @override
+  final dynamic detailData;
 
   @override
   String toString() {
-    return 'MeasureState(tags: $tags, selectedId: $selectedId)';
+    return 'MeasureState(tags: $tags, selectedId: $selectedId, detailData: $detailData)';
   }
 
   @override
@@ -148,14 +166,18 @@ class _$_MeasureState implements _MeasureState {
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.selectedId, selectedId) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedId, selectedId)));
+                    .equals(other.selectedId, selectedId)) &&
+            (identical(other.detailData, detailData) ||
+                const DeepCollectionEquality()
+                    .equals(other.detailData, detailData)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(selectedId);
+      const DeepCollectionEquality().hash(selectedId) ^
+      const DeepCollectionEquality().hash(detailData);
 
   @JsonKey(ignore: true)
   @override
@@ -169,8 +191,10 @@ class _$_MeasureState implements _MeasureState {
 }
 
 abstract class _MeasureState implements MeasureState {
-  const factory _MeasureState({List<dynamic> tags, String? selectedId}) =
-      _$_MeasureState;
+  const factory _MeasureState(
+      {List<dynamic> tags,
+      String? selectedId,
+      dynamic detailData}) = _$_MeasureState;
 
   factory _MeasureState.fromJson(Map<String, dynamic> json) =
       _$_MeasureState.fromJson;
@@ -179,6 +203,8 @@ abstract class _MeasureState implements MeasureState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   @override
   String? get selectedId => throw _privateConstructorUsedError;
+  @override
+  dynamic get detailData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MeasureStateCopyWith<_MeasureState> get copyWith =>

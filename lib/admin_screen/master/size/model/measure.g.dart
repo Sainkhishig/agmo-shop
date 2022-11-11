@@ -21,13 +21,13 @@ class MeasureAdapter extends TypeAdapter<Measure> {
       fields[1] as String,
       fields[2] as dynamic,
       fields[3] as DateTime,
-    );
+    )..userKey = fields[4] as String;
   }
 
   @override
   void write(BinaryWriter writer, Measure obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.code)
       ..writeByte(1)
@@ -35,7 +35,9 @@ class MeasureAdapter extends TypeAdapter<Measure> {
       ..writeByte(2)
       ..write(obj.lstMeasure)
       ..writeByte(3)
-      ..write(obj.writeDate);
+      ..write(obj.writeDate)
+      ..writeByte(4)
+      ..write(obj.userKey);
   }
 
   @override

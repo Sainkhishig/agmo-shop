@@ -2,6 +2,7 @@ class CategoryModel {
   late String code;
   late String name;
   late DateTime writeDate;
+  late String userKey;
   CategoryModel(this.code, this.name, this.writeDate);
   factory CategoryModel.fromRTDB(Map<String, dynamic> data) {
     // print("datakey");

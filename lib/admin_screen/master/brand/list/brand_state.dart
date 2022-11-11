@@ -8,6 +8,7 @@ abstract class BrandState with _$BrandState {
   const factory BrandState({
     @Default([]) List tags,
     @Default(null) String? selectedId,
+    @Default(null) dynamic detailData,
     // @Default(PlanType.lodging) PlanType planType,
     // @Default(DetailMode.none) DetailMode mode,
     // @Default(SearchStatus.none) SearchStatus searchStatus,

@@ -22,10 +22,13 @@ class _$CategoryStateTearOff {
   const _$CategoryStateTearOff();
 
   _CategoryState call(
-      {List<dynamic> tags = const [], String? selectedId = null}) {
+      {List<dynamic> tags = const [],
+      String? selectedId = null,
+      dynamic detailData = null}) {
     return _CategoryState(
       tags: tags,
       selectedId: selectedId,
+      detailData: detailData,
     );
   }
 
@@ -41,6 +44,7 @@ const $CategoryState = _$CategoryStateTearOff();
 mixin _$CategoryState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   String? get selectedId => throw _privateConstructorUsedError;
+  dynamic get detailData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +57,7 @@ abstract class $CategoryStateCopyWith<$Res> {
   factory $CategoryStateCopyWith(
           CategoryState value, $Res Function(CategoryState) then) =
       _$CategoryStateCopyWithImpl<$Res>;
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, dynamic detailData});
 }
 
 /// @nodoc
@@ -69,6 +73,7 @@ class _$CategoryStateCopyWithImpl<$Res>
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? detailData = freezed,
   }) {
     return _then(_value.copyWith(
       tags: tags == freezed
@@ -79,6 +84,10 @@ class _$CategoryStateCopyWithImpl<$Res>
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      detailData: detailData == freezed
+          ? _value.detailData
+          : detailData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -90,7 +99,7 @@ abstract class _$CategoryStateCopyWith<$Res>
           _CategoryState value, $Res Function(_CategoryState) then) =
       __$CategoryStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, dynamic detailData});
 }
 
 /// @nodoc
@@ -108,6 +117,7 @@ class __$CategoryStateCopyWithImpl<$Res>
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? detailData = freezed,
   }) {
     return _then(_CategoryState(
       tags: tags == freezed
@@ -118,6 +128,10 @@ class __$CategoryStateCopyWithImpl<$Res>
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      detailData: detailData == freezed
+          ? _value.detailData
+          : detailData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -125,7 +139,8 @@ class __$CategoryStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CategoryState implements _CategoryState {
-  const _$_CategoryState({this.tags = const [], this.selectedId = null});
+  const _$_CategoryState(
+      {this.tags = const [], this.selectedId = null, this.detailData = null});
 
   factory _$_CategoryState.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryStateFromJson(json);
@@ -136,10 +151,13 @@ class _$_CategoryState implements _CategoryState {
   @JsonKey(defaultValue: null)
   @override
   final String? selectedId;
+  @JsonKey(defaultValue: null)
+  @override
+  final dynamic detailData;
 
   @override
   String toString() {
-    return 'CategoryState(tags: $tags, selectedId: $selectedId)';
+    return 'CategoryState(tags: $tags, selectedId: $selectedId, detailData: $detailData)';
   }
 
   @override
@@ -150,14 +168,18 @@ class _$_CategoryState implements _CategoryState {
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.selectedId, selectedId) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedId, selectedId)));
+                    .equals(other.selectedId, selectedId)) &&
+            (identical(other.detailData, detailData) ||
+                const DeepCollectionEquality()
+                    .equals(other.detailData, detailData)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(selectedId);
+      const DeepCollectionEquality().hash(selectedId) ^
+      const DeepCollectionEquality().hash(detailData);
 
   @JsonKey(ignore: true)
   @override
@@ -171,8 +193,10 @@ class _$_CategoryState implements _CategoryState {
 }
 
 abstract class _CategoryState implements CategoryState {
-  const factory _CategoryState({List<dynamic> tags, String? selectedId}) =
-      _$_CategoryState;
+  const factory _CategoryState(
+      {List<dynamic> tags,
+      String? selectedId,
+      dynamic detailData}) = _$_CategoryState;
 
   factory _CategoryState.fromJson(Map<String, dynamic> json) =
       _$_CategoryState.fromJson;
@@ -181,6 +205,8 @@ abstract class _CategoryState implements CategoryState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   @override
   String? get selectedId => throw _privateConstructorUsedError;
+  @override
+  dynamic get detailData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CategoryStateCopyWith<_CategoryState> get copyWith =>

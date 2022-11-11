@@ -21,10 +21,14 @@ BrandState _$BrandStateFromJson(Map<String, dynamic> json) {
 class _$BrandStateTearOff {
   const _$BrandStateTearOff();
 
-  _BrandState call({List<dynamic> tags = const [], String? selectedId = null}) {
+  _BrandState call(
+      {List<dynamic> tags = const [],
+      String? selectedId = null,
+      dynamic detailData = null}) {
     return _BrandState(
       tags: tags,
       selectedId: selectedId,
+      detailData: detailData,
     );
   }
 
@@ -40,6 +44,7 @@ const $BrandState = _$BrandStateTearOff();
 mixin _$BrandState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   String? get selectedId => throw _privateConstructorUsedError;
+  dynamic get detailData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +57,7 @@ abstract class $BrandStateCopyWith<$Res> {
   factory $BrandStateCopyWith(
           BrandState value, $Res Function(BrandState) then) =
       _$BrandStateCopyWithImpl<$Res>;
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, dynamic detailData});
 }
 
 /// @nodoc
@@ -67,6 +72,7 @@ class _$BrandStateCopyWithImpl<$Res> implements $BrandStateCopyWith<$Res> {
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? detailData = freezed,
   }) {
     return _then(_value.copyWith(
       tags: tags == freezed
@@ -77,6 +83,10 @@ class _$BrandStateCopyWithImpl<$Res> implements $BrandStateCopyWith<$Res> {
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      detailData: detailData == freezed
+          ? _value.detailData
+          : detailData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -87,7 +97,7 @@ abstract class _$BrandStateCopyWith<$Res> implements $BrandStateCopyWith<$Res> {
           _BrandState value, $Res Function(_BrandState) then) =
       __$BrandStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<dynamic> tags, String? selectedId});
+  $Res call({List<dynamic> tags, String? selectedId, dynamic detailData});
 }
 
 /// @nodoc
@@ -104,6 +114,7 @@ class __$BrandStateCopyWithImpl<$Res> extends _$BrandStateCopyWithImpl<$Res>
   $Res call({
     Object? tags = freezed,
     Object? selectedId = freezed,
+    Object? detailData = freezed,
   }) {
     return _then(_BrandState(
       tags: tags == freezed
@@ -114,6 +125,10 @@ class __$BrandStateCopyWithImpl<$Res> extends _$BrandStateCopyWithImpl<$Res>
           ? _value.selectedId
           : selectedId // ignore: cast_nullable_to_non_nullable
               as String?,
+      detailData: detailData == freezed
+          ? _value.detailData
+          : detailData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -121,7 +136,8 @@ class __$BrandStateCopyWithImpl<$Res> extends _$BrandStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BrandState implements _BrandState {
-  const _$_BrandState({this.tags = const [], this.selectedId = null});
+  const _$_BrandState(
+      {this.tags = const [], this.selectedId = null, this.detailData = null});
 
   factory _$_BrandState.fromJson(Map<String, dynamic> json) =>
       _$$_BrandStateFromJson(json);
@@ -132,10 +148,13 @@ class _$_BrandState implements _BrandState {
   @JsonKey(defaultValue: null)
   @override
   final String? selectedId;
+  @JsonKey(defaultValue: null)
+  @override
+  final dynamic detailData;
 
   @override
   String toString() {
-    return 'BrandState(tags: $tags, selectedId: $selectedId)';
+    return 'BrandState(tags: $tags, selectedId: $selectedId, detailData: $detailData)';
   }
 
   @override
@@ -146,14 +165,18 @@ class _$_BrandState implements _BrandState {
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.selectedId, selectedId) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedId, selectedId)));
+                    .equals(other.selectedId, selectedId)) &&
+            (identical(other.detailData, detailData) ||
+                const DeepCollectionEquality()
+                    .equals(other.detailData, detailData)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(selectedId);
+      const DeepCollectionEquality().hash(selectedId) ^
+      const DeepCollectionEquality().hash(detailData);
 
   @JsonKey(ignore: true)
   @override
@@ -167,8 +190,10 @@ class _$_BrandState implements _BrandState {
 }
 
 abstract class _BrandState implements BrandState {
-  const factory _BrandState({List<dynamic> tags, String? selectedId}) =
-      _$_BrandState;
+  const factory _BrandState(
+      {List<dynamic> tags,
+      String? selectedId,
+      dynamic detailData}) = _$_BrandState;
 
   factory _BrandState.fromJson(Map<String, dynamic> json) =
       _$_BrandState.fromJson;
@@ -177,6 +202,8 @@ abstract class _BrandState implements BrandState {
   List<dynamic> get tags => throw _privateConstructorUsedError;
   @override
   String? get selectedId => throw _privateConstructorUsedError;
+  @override
+  dynamic get detailData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BrandStateCopyWith<_BrandState> get copyWith =>

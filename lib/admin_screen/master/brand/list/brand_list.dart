@@ -1,5 +1,7 @@
+import 'package:agmo_shop/admin_screen/common/widget/register_button.dart';
+
+import 'package:agmo_shop/admin_screen/master/brand/list/brand_list_controller.dart';
 import 'package:agmo_shop/admin_screen/master/brand/model/brand_model.dart';
-import 'package:agmo_shop/admin_screen/master/category/list/category_list_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,10 +13,26 @@ class BrandList extends HookConsumerWidget {
   final _database = FirebaseDatabase.instance.reference();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(categoryListController.notifier);
+    final controller = ref.watch(brandListController.notifier);
     // controller.setModelListenable(ref);
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        foregroundColor: Colors.blueGrey,
+        backgroundColor: Colors.grey.shade100,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RegisterButton(
+              onClick: () {
+                controller.clearData();
+              },
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           StreamBuilder(
@@ -31,6 +49,7 @@ class BrandList extends HookConsumerWidget {
                   print("userkey$keyUser");
                   final nextUser =
                       BrandModel.fromRTDB(Map<String, dynamic>.from(value));
+                  nextUser.userKey = keyUser;
                   print("gram*${nextUser.code}");
                   final userTile = Container(
                     decoration: const BoxDecoration(
@@ -59,7 +78,7 @@ class BrandList extends HookConsumerWidget {
                         ],
                       ),
                       onTap: () {
-                        controller.update(keyUser);
+                        controller.setDetailData(nextUser);
                       },
                     ),
                   );

@@ -1,3 +1,4 @@
+import 'package:agmo_shop/admin_screen/common/widget/register_button.dart';
 import 'package:agmo_shop/admin_screen/master/category/list/category_list_controller.dart';
 import 'package:agmo_shop/admin_screen/master/category/model/category_model.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,22 @@ class CategoryList extends HookConsumerWidget {
     // controller.setModelListenable(ref);
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        foregroundColor: Colors.blueGrey,
+        backgroundColor: Colors.grey.shade100,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RegisterButton(
+              onClick: () {
+                controller.clearData();
+              },
+            ),
+          ],
+        ),
+      ),
       body: //Expanded(child: FlashCardListItem(flashcards: flashCard)),
           Column(
         children: [
@@ -28,10 +45,12 @@ class CategoryList extends HookConsumerWidget {
                 // print("myUserKeydatas:$datas");
                 final myUsers = Map<String, dynamic>.from(
                     (snapshot.data! as Event).snapshot.value);
+
                 myUsers.forEach((keyUser, value) {
                   print("userkey$keyUser");
                   final nextUser =
                       CategoryModel.fromRTDB(Map<String, dynamic>.from(value));
+                  nextUser.userKey = keyUser;
                   print("gram*${nextUser.code}");
                   final userTile = Container(
                     decoration: const BoxDecoration(
@@ -60,7 +79,7 @@ class CategoryList extends HookConsumerWidget {
                         ],
                       ),
                       onTap: () {
-                        controller.update(keyUser);
+                        controller.setDetailData(nextUser);
                       },
                     ),
                   );

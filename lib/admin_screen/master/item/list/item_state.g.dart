@@ -13,6 +13,7 @@ _$_ItemState _$$_ItemStateFromJson(Map<String, dynamic> json) => _$_ItemState(
               ?.map((e) => e as String)
               .toList() ??
           [],
+      detailData: json['detailData'] ?? null,
     );
 
 Map<String, dynamic> _$$_ItemStateToJson(_$_ItemState instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_ItemStateToJson(_$_ItemState instance) =>
       'tags': instance.tags,
       'selectedId': instance.selectedId,
       'lstMeasure': instance.lstMeasure,
+      'detailData': instance.detailData,
     };

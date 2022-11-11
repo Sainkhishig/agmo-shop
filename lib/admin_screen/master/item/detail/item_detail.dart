@@ -23,7 +23,8 @@ import 'package:firebase_database/firebase_database.dart';
 // pyfm061 : キャンセル規定編集
 class ItemDetail extends HookConsumerWidget {
   final _database = FirebaseDatabase.instance.reference();
-  ItemDetail({Key? key}) : super(key: key);
+  ItemDetail({Key? key, this.detail}) : super(key: key);
+  late ItemModel? detail;
   List<Category> categoryMaster = [];
   AfenTextField txtCode = AfenTextField("Код");
   AfenTextField txtName = AfenTextField("Нэр");
@@ -33,7 +34,8 @@ class ItemDetail extends HookConsumerWidget {
   AfenTextField txtWeight = AfenTextField("Жин");
   AfenTextField txtDimension = AfenTextField("3 хэмжээс");
   AfenRichTextField txtDescription = AfenRichTextField("Тайлбар");
-
+  String selectedBrandId = "";
+  String selectedCategoryId = "";
   List<String> lstMeasure = [];
   // AfenDropDown dropDownCategory = AfenDropDown("Ангилал");
   // AfenDropDown dropDownBrand = AfenDropDown("Үйлдвэрлэгч");
@@ -119,6 +121,17 @@ class ItemDetail extends HookConsumerWidget {
           ),
         )
         .toList();
+
+    if (detail != null) {
+      txtCode.controller.text = detail!.code;
+      txtName.controller.text = detail!.name;
+      txtPrice.controller.text = detail!.price;
+      txtSalePrice.controller.text = detail!.salePrice;
+      txtTransportationFee.controller.text = detail!.transportationFee;
+      txtWeight.controller.text = detail!.weight;
+      txtDimension.controller.text = detail!.dimension;
+      txtDescription.controller.text = detail!.description;
+    }
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(20),
@@ -153,7 +166,10 @@ class ItemDetail extends HookConsumerWidget {
                     width: 450,
                     child: CommonDropdown(
                       dropdownSourceBrand,
-                      onSelectionChanged: (selectedValue) {},
+                      onSelectionChanged: (selectedValue) {
+                        print("selectedValue'$selectedValue");
+                        selectedBrandId = "$selectedValue";
+                      },
                     ),
                   ),
                 ),
@@ -264,8 +280,30 @@ class ItemDetail extends HookConsumerWidget {
         .map((e) => ImageModel(e.fieldImageName.controller.text.trim(),
             e.fieldImageLink.controller.text.trim()))
         .toList();
-    ItemModel item = ItemModel(itemCode, itemName, mainImage, '1', '1', "20000",
-        "25000", images, DateTime.now());
+
+    // var categoryId = txtDescription.controller.text;
+    // var brandId = txtDescription.controller.text;
+    var price = txtPrice.controller.text;
+    var salePrice = txtSalePrice.controller.text;
+
+    var transportationFee = txtTransportationFee.controller.text;
+    var weight = txtWeight.controller.text;
+    var dimension = txtDimension.controller.text;
+    var description = txtDescription.controller.text;
+    ItemModel item = ItemModel(
+        itemCode,
+        itemName,
+        mainImage,
+        selectedBrandId,
+        selectedBrandId,
+        price,
+        salePrice,
+        transportationFee,
+        weight,
+        dimension,
+        description,
+        images,
+        DateTime.now());
     controller.create(item);
   }
 }

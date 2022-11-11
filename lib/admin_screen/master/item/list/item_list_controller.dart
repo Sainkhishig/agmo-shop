@@ -17,23 +17,12 @@ class ItemListController extends StateNotifier<ItemState> {
   //#endregion ==================== constructor ====================
 
   //#region ==================== accessor ====================
-  // List<ItemState>? get lstPlan => state.resultList;
-  // late List<SiteModel> masterSite;
-  // late List<RoomTypeModel> masterRoomType;
-
-  void update(String uKey) {
-    var _todoQuery = _database.child("/item");
-    _todoQuery.child("/$uKey").set({
-      'code': '29',
-      'name': 'gutal',
-      'time': DateTime.now().microsecondsSinceEpoch
-    });
+  setDetailData(dynamic currentExercise) async {
+    state = state.copyWith(detailData: currentExercise);
   }
 
-  //#endregion ---------- search ----------
-
-  selecteId(String uniqueId) {
-    // state = state.copyWith(selectedId: uniqueId);
+  clearData() async {
+    state = const ItemState();
   }
   //#endregion ==================== method ====================
 }

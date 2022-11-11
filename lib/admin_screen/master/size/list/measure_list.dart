@@ -1,4 +1,5 @@
-import 'package:agmo_shop/admin_screen/master/category/list/category_list_controller.dart';
+import 'package:agmo_shop/admin_screen/common/widget/register_button.dart';
+import 'package:agmo_shop/admin_screen/master/size/list/measure_list_controller.dart';
 import 'package:agmo_shop/admin_screen/master/size/model/measure.dart';
 
 import 'package:flutter/material.dart';
@@ -10,10 +11,26 @@ class MeasureList extends HookConsumerWidget {
   final _database = FirebaseDatabase.instance.reference();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(categoryListController.notifier);
+    final controller = ref.watch(measureListController.notifier);
     // controller.setModelListenable(ref);
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        foregroundColor: Colors.blueGrey,
+        backgroundColor: Colors.grey.shade100,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RegisterButton(
+              onClick: () {
+                controller.clearData();
+              },
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           StreamBuilder(
@@ -57,7 +74,7 @@ class MeasureList extends HookConsumerWidget {
                         ],
                       ),
                       onTap: () {
-                        controller.update(keyUser);
+                        controller.setDetailData(nextUser);
                       },
                     ),
                   );

@@ -8,7 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // pyfm061 : キャンセル規定編集
 class MeasureDetail extends HookConsumerWidget {
-  MeasureDetail({Key? key}) : super(key: key);
+  MeasureDetail({Key? key, this.detail}) : super(key: key);
+  late Measure? detail;
   AfenTextField txtCode = AfenTextField("код");
   AfenTextField txtName = AfenTextField("нэр");
   TextEditListWidget measureAddController = TextEditListWidget(
@@ -33,7 +34,10 @@ class MeasureDetail extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(measureDetailController.notifier);
     controller.setModelListenable(ref);
-
+    if (detail != null) {
+      txtCode.controller.text = detail!.code;
+      txtName.controller.text = detail!.name;
+    }
     return Scaffold(
         body: Padding(
       padding: EdgeInsets.all(20),

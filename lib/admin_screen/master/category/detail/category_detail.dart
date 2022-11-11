@@ -7,14 +7,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // pyfm061 : キャンセル規定編集
 class CategoryDetail extends HookConsumerWidget {
-  CategoryDetail({Key? key}) : super(key: key);
+  CategoryDetail({Key? key, this.detail}) : super(key: key);
+  late CategoryModel? detail;
   AfenTextField txtCode = AfenTextField("код");
   AfenTextField txtName = AfenTextField("нэр");
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(categoryDetailController.notifier);
     controller.setModelListenable(ref);
-
+    if (detail != null) {
+      txtCode.controller.text = detail!.code;
+      txtName.controller.text = detail!.name;
+    }
     return Scaffold(
         body: Padding(
       padding: EdgeInsets.all(20),

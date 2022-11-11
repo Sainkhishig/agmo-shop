@@ -9,6 +9,7 @@ abstract class ItemState with _$ItemState {
     @Default([]) List tags,
     @Default(null) String? selectedId,
     @Default([]) List<String> lstMeasure,
+    @Default(null) dynamic detailData,
     // @Default(PlanType.lodging) PlanType planType,
     // @Default(DetailMode.none) DetailMode mode,
     // @Default(SearchStatus.none) SearchStatus searchStatus,

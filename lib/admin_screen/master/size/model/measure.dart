@@ -28,6 +28,8 @@ class Measure extends HiveObject {
   late dynamic lstMeasure;
   @HiveField(3)
   late DateTime writeDate;
+  @HiveField(4)
+  String userKey = "";
   Measure(this.code, this.name, this.lstMeasure, this.writeDate);
   factory Measure.fromRTDB(dynamic data) {
     // print("datakey");

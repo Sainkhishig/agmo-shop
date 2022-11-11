@@ -9,6 +9,7 @@ class Brand extends HiveObject {
   late String name;
   @HiveField(2)
   late DateTime writeDate;
+
   Brand(this.code, this.name, this.writeDate);
   factory Brand.fromRTDB(Map<String, dynamic> data) {
     // print("datakey");
