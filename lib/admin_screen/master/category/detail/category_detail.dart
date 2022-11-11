@@ -42,6 +42,7 @@ class CategoryDetail extends HookConsumerWidget {
     var categoryName = txtName.controller.text;
     CategoryModel category =
         CategoryModel(categoryCode, categoryName, DateTime.now());
+    category.userKey = detail == null ? "" : detail!.userKey;
     controller.write(category);
   }
 }

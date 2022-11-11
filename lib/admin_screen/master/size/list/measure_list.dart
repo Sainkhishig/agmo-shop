@@ -45,8 +45,9 @@ class MeasureList extends HookConsumerWidget {
                     (snapshot.data! as Event).snapshot.value);
                 myUsers.forEach((keyUser, value) {
                   print("userkey$keyUser");
-                  final nextUser = Measure.fromRTDB(
-                      value); //Map<String, dynamic>.from(value));
+                  final nextUser = Measure.fromRTDB(value);
+                  nextUser.userKey =
+                      keyUser; //Map<String, dynamic>.from(value));
                   print("gram*${nextUser.code}");
                   final userTile = Container(
                     decoration: const BoxDecoration(
