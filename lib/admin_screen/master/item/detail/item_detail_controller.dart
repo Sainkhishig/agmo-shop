@@ -106,6 +106,11 @@ class ItemDetailController extends StateNotifier<ItemState> {
       'brandId': detail.brandId,
       'salePrice': detail.salePrice,
       'price': detail.price,
+      'transportationFee': detail.transportationFee,
+      'dimension': detail.dimension,
+      'weight': detail.weight,
+      'description': detail.description,
+      'imageLink': detail.imageLink,
       'images': lstExample,
       'time': DateTime.now().microsecondsSinceEpoch
     };

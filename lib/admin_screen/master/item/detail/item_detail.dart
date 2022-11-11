@@ -168,7 +168,9 @@ class ItemDetail extends HookConsumerWidget {
                       dropdownSourceBrand,
                       onSelectionChanged: (selectedValue) {
                         print("selectedValue'$selectedValue");
-                        selectedBrandId = "$selectedValue";
+                        // var dropDown= (selectedValue as CommonDropDownModel).id;
+                        selectedBrandId =
+                            (selectedValue as CommonDropDownModel).id;
                       },
                     ),
                   ),
@@ -304,6 +306,7 @@ class ItemDetail extends HookConsumerWidget {
         description,
         images,
         DateTime.now());
+    item.userKey = detail == null ? "" : detail!.userKey;
     controller.create(item);
   }
 }
